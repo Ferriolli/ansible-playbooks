@@ -1,0 +1,16 @@
+- name: Install LAMP on w01
+  hosts: w01
+  tasks:
+    - include_tasks: install_httpd.yml
+    - include_tasks: install_mariadb.yml
+    - include_tasks: install_php.yml
+
+- name: Install Jenkins on w02
+  hosts: w02
+  tasks:
+    - include_tasks: install_jenkins.yml
+
+- name: Install Rundeck on w03
+  hosts: w03
+  tasks:
+    - include_tasks: install_rundeck.yml

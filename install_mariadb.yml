@@ -1,0 +1,3 @@
+- name: Install mariadb
+  package: name=mariadb state=latest
+  become: true

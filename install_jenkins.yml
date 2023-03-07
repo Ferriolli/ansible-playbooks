@@ -1,0 +1,36 @@
+- name: Download Jenkins package - part 1
+  get_url:
+    url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: Download Jenkins package - part 2
+  rpm_key:
+    state: present
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+    become: true
+
+- name: Update YUM repository
+  yum:
+    name: "*"
+    state: latest
+    become: true
+
+- name: Install Java 11
+  yum:
+    name: java-11-openjdk
+    state: latest
+    become: true
+
+- name: Install Jenkins
+  yum:
+    name: jenkins
+    state: latest
+
+- name: Reload system services
+  systemd:
+    daemon_reload: yes
+
+- name: Start Jenkins
+  systemd:
+    name: jenkins
+    state: started

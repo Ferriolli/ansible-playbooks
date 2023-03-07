@@ -1,0 +1,3 @@
+- name: Install mariadb
+  package: name=php state=latest
+  become: true

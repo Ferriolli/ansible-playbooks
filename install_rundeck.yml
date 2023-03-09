@@ -1,20 +1,17 @@
 - name: Download rundeck installation script
-  ansible.builtin.shell: curl https://raw.githubusercontent.com/rundeck/packaging/main/scripts/rpm-setup.sh 2> /dev/null | bash -s rundeck
+  ansible.builtin.shell: sudo curl https://raw.githubusercontent.com/rundeck/packaging/main/scripts/rpm-setup.sh 2> /dev/null | bash -s rundeck
 
 - name: Update YUM repository
   yum:
     name: "*"
     state: latest
-    become: true
 
 - name: Install Java 11
   yum:
     name: java-11-openjdk
     state: latest
-    become: true
 
 - name: Install Rundeck
   yum:
     name: rundeck
     state: latest
-    become: true
